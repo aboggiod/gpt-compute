@@ -1,0 +1,57 @@
+{
+  "$schema": "https://spec.modelcontextprotocol.io/schema/mcpserver.json",
+  "version": "2024-11-05",
+  "name": "McpMemoryServer",
+  "description": "Persistent Memory API Server with memory + local file tools for ChatGPT",
+  "transport": {
+    "type": "http",
+    "url": "https://your-server-url.com/mcp"
+  },
+  "authentication": {
+    "type": "oauth2",
+    "tokenEndpoint": "https://your-server-url.com/oauth/token",
+    "grantType": "client_credentials",
+    "clientId": "chatgpt-client",
+    "clientSecret": "your-client-secret-here",
+    "scopes": [
+      "memory.read",
+      "memory.write",
+      "tools.filesystem"
+    ]
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "memory.read",
+      "description": "Read stored memory (preferences, facts, conversations) for the current session"
+    },
+    {
+      "name": "memory.write",
+      "description": "Write to persistent memory (preferences, facts, messages)"
+    },
+    {
+      "name": "memory.search",
+      "description": "Semantic search across all stored memory using vector similarity"
+    },
+    {
+      "name": "filesystem.read_file",
+      "description": "Read the contents of a file from the allowed directory"
+    },
+    {
+      "name": "filesystem.list_directory",
+      "description": "List files and directories in a directory"
+    },
+    {
+      "name": "filesystem.search_files",
+      "description": "Search for files matching a pattern"
+    }
+  ],
+  "serverInfo": {
+    "name": "McpMemoryServer",
+    "version": "1.0.0"
+  }
+}
